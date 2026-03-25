@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive - Ecommerce Compliance Dashboard</title>
+    <link rel="stylesheet" href="Archieve.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <button class="nav-tab" data-tab="dashboard" onclick="window.location.href='index.html'">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </button>
+                <button class="nav-tab" data-tab="analytics" onclick="window.location.href='analytics.html'">
+                    <i class="fas fa-chart-line"></i>
+                    Analytics
+                </button>
+                <button class="nav-tab" data-tab="scanner" onclick="window.location.href='scanner.html'">
+                    <i class="fas fa-search"></i>
+                    Scanner
+                </button>
+                <button class="nav-tab active" data-tab="archive" onclick="window.location.href='Archieve.html'">
+                    <i class="fas fa-archive"></i>
+                    Archive
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>ComplianceHub</span>
+            </div>
+            <div class="system-status">
+                <span class="status-indicator status-normal"></span>
+                <span class="status-text">System Normal</span>
+            </div>
+        </div>
+        
+        <div class="header-center">
+            <div class="global-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="global-search-input" placeholder="Search archived data..." id="globalSearchInput">
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="header-notifications">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            <div class="user-info">
+                <img src="/placeholder.svg?height=32&width=32" alt="User Avatar" class="user-avatar">
+                <div class="user-details">
+                    <span class="user-name">John Doe</span>
+                    <span class="user-role">Compliance Manager</span>
+                </div>
+                <button class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Archive Analytics Summary -->
+        <section class="metrics-section">
+            <div class="section-header">
+                <h2>Archive Analytics Summary</h2>
+                <div class="refresh-controls">
+                    <button class="btn btn-outline" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh Data
+                    </button>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 class="metric-value">15,847</h3>
+                        <p class="metric-label">Total Records</p>
+                        <span class="metric-change positive">+8.2%</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon success">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 class="metric-value">91.5%</h3>
+                        <p class="metric-label">Overall Compliance Rate</p>
+                        <span class="metric-change positive">+1.8%</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon warning">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 class="metric-value">127</h3>
+                        <p class="metric-label">Pending Reviews</p>
+                        <span class="metric-change negative">↑ 15</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-icon info">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="metric-content">
+                        <h3 class="metric-value">87.3%</h3>
+                        <p class="metric-label">Average Confidence</p>
+                        <span class="metric-change positive">+0.5%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filter Panel -->
+        <section class="archive-filters-section">
+            <div class="section-header">
+                <h2>Search & Filter Panel</h2>
+            </div>
+            
+            <div class="archive-filters-container">
+                <div class="archive-search-row">
+                    <div class="search-group">
+                        <label>Text Search</label>
+                        <input type="text" class="archive-search-input" placeholder="Product name, violation type, URL..." id="archiveTextSearch">
+                    </div>
+                    <div class="date-range-group">
+                        <label>Date Range</label>
+                        <div class="date-inputs">
+                            <input type="date" class="date-input" id="startDate">
+                            <span class="date-separator">to</span>
+                            <input type="date" class="date-input" id="endDate">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="archive-filters-grid">
+                    <div class="filter-group">
+                        <label>Platform</label>
+                        <select class="filter-select" id="archivePlatformFilter">
+                            <option value="all">All Platforms</option>
+                            <option value="amazon">Amazon</option>
+                            <option value="flipkart">Flipkart</option>
+                            <option value="myntra">Myntra</option>
+                            <option value="nykaa">Nykaa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Violation Type</label>
+                        <select class="filter-select" id="archiveViolationFilter">
+                            <option value="all">All Types</option>
+                            <option value="legal">Legal Metrology</option>
+                            <option value="fssai">FSSAI</option>
+                            <option value="bis">BIS</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Confidence Range</label>
+                        <div class="range-slider-container">
+                            <input type="range" class="range-slider" min="0" max="100" value="50" id="confidenceRange">
+                            <span class="range-value" id="confidenceValue">50%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Review Status</label>
+                        <select class="filter-select" id="reviewStatusFilter">
+                            <option value="all">All Status</option>
+                            <option value="pending">Pending Review</option>
+                            <option value="reviewed">Reviewed</option>
+                            <option value="flagged">Flagged</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="btn btn-primary" id="applyFiltersBtn">
+                        <i class="fas fa-filter"></i>
+                        Apply Filters
+                    </button>
+                    <button class="btn btn-outline" id="clearFiltersBtn">
+                        <i class="fas fa-times"></i>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Table -->
+        <section class="archive-results-section">
+            <div class="section-header">
+                <h2>Archive Results</h2>
+                <div class="table-controls">
+                    <div class="bulk-actions">
+                        <input type="checkbox" id="selectAll" class="bulk-checkbox">
+                        <label for="selectAll">Select All</label>
+                        <button class="btn btn-secondary" id="bulkReportBtn" disabled>
+                            <i class="fas fa-file-alt"></i>
+                            Generate Reports
+                        </button>
+                        <button class="btn btn-secondary" id="bulkExportBtn" disabled>
+                            <i class="fas fa-download"></i>
+                            Export CSV
+                        </button>
+                        <button class="btn btn-secondary" id="bulkReviewBtn" disabled>
+                            <i class="fas fa-check"></i>
+                            Mark Reviewed
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="archive-table" id="archiveTable">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" class="bulk-checkbox"></th>
+                            <th>Product Name <i class="fas fa-sort"></i></th>
+                            <th>Platform <i class="fas fa-sort"></i></th>
+                            <th>Scan Date <i class="fas fa-sort"></i></th>
+                            <th>Violation(s) <i class="fas fa-sort"></i></th>
+                            <th>Confidence <i class="fas fa-sort"></i></th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="archiveTableBody">
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <div class="pagination-info">
+                    <span>Showing 1-20 of 15,847 results</span>
+                </div>
+                <div class="pagination-controls">
+                    <button class="pagination-btn" id="firstPageBtn">
+                        <i class="fas fa-angle-double-left"></i>
+                    </button>
+                    <button class="pagination-btn" id="prevPageBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="pagination-pages">
+                        <button class="pagination-page active">1</button>
+                        <button class="pagination-page">2</button>
+                        <button class="pagination-page">3</button>
+                        <span>...</span>
+                        <button class="pagination-page">793</button>
+                    </span>
+                    <button class="pagination-btn" id="nextPageBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <button class="pagination-btn" id="lastPageBtn">
+                        <i class="fas fa-angle-double-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Distribution Chart -->
+        <section class="chart-section">
+            <div class="section-header">
+                <h2>Platform Distribution</h2>
+            </div>
+            <div class="chart-container">
+                <canvas id="platformChart" width="400" height="200"></canvas>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="actions-section">
+            <div class="actions-grid">
+                <button class="action-btn primary-solid">
+                    <i class="fas fa-eye"></i>
+                    View All Violations
+                </button>
+                <button class="action-btn secondary-solid">
+                    <i class="fas fa-file-alt"></i>
+                    Generate Report
+                </button>
+                <button class="action-btn tertiary-solid">
+                    <i class="fas fa-chart-bar"></i>
+                    Analytics Dashboard
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-btn" id="chatbotBtn">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chatbot-tooltip">Need help with archive data?</div>
+    </div>
+
+    <script src="Archieve.js"></script>
+</body>
+</html>

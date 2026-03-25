@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanner - Ecommerce Compliance Monitor</title>
+    <link rel="stylesheet" href="scanner.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>ComplianceMonitor</span>
+            </div>
+            
+            <!-- Global Search Bar -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="globalSearch" placeholder="Search jobs, platforms, violations..." class="search-input">
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <div class="notification-wrapper">
+                    <i class="fas fa-bell notification-icon"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <img src="/placeholder.svg?height=32&width=32" alt="User" class="user-avatar">
+                    <span class="user-name">Admin</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+        <a href="index.html" class="nav-tab">
+            <i class="fas fa-tachometer-alt"></i>
+            Dashboard
+        </a>
+        <a href="scanner.html" class="nav-tab active">
+            <i class="fas fa-search"></i>
+            Scanner
+        </a>
+        <a href="analytics.html" class="nav-tab">
+            <i class="fas fa-chart-line"></i>
+            Analytics
+        </a>
+        <a href="Archieve.html" class="nav-tab">
+            <i class="fas fa-archive"></i>
+            Archive
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Job Creation Panel -->
+        <section class="job-creation-panel">
+            <div class="panel-header">
+                <h2><i class="fas fa-plus-circle"></i> Create Scan Job</h2>
+                <p>Configure and start new scanning operations</p>
+            </div>
+            
+            <div class="job-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobType">Job Type</label>
+                        <select id="jobType" class="form-select">
+                            <option value="initial">Initial Scan</option>
+                            <option value="rescan">Re-scan</option>
+                            <option value="targeted">Targeted Check</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="priority">Priority</label>
+                        <select id="priority" class="form-select">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Platforms</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="amazon" checked>
+                            <span class="checkmark"></span>
+                            <i class="fab fa-amazon platform-icon amazon"></i>
+                            Amazon
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="flipkart">
+                            <span class="checkmark"></span>
+                            <i class="fas fa-shopping-cart platform-icon flipkart"></i>
+                            Flipkart
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="ebay">
+                            <span class="checkmark"></span>
+                            <i class="fab fa-ebay platform-icon ebay"></i>
+                            eBay
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="shopify">
+                            <span class="checkmark"></span>
+                            <i class="fab fa-shopify platform-icon shopify"></i>
+                            Shopify
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="categories">Categories</label>
+                    <div class="multi-select-wrapper">
+                        <select id="categories" class="form-select" multiple>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing & Fashion</option>
+                            <option value="home">Home & Garden</option>
+                            <option value="health">Health & Beauty</option>
+                            <option value="sports">Sports & Outdoors</option>
+                            <option value="books">Books & Media</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" id="startScanBtn">
+                        <i class="fas fa-play"></i>
+                        Start Scan Job
+                    </button>
+                    <button class="btn btn-secondary" id="scheduleJobBtn">
+                        <i class="fas fa-clock"></i>
+                        Schedule Job
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Jobs Monitor -->
+        <section class="active-jobs-section">
+            <div class="section-header">
+                <h2><i class="fas fa-tasks"></i> Active Jobs Monitor</h2>
+                <div class="refresh-btn" id="refreshJobs">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+            </div>
+            
+            <div class="active-jobs-grid" id="activeJobsGrid">
+                <!-- Active jobs will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Live Processing Pipeline -->
+        <section class="pipeline-section">
+            <div class="section-header">
+                <h2><i class="fas fa-stream"></i> Live Processing Pipeline</h2>
+                <div class="pipeline-status">
+                    <span class="status-indicator active"></span>
+                    Processing Active
+                </div>
+            </div>
+            
+            <div class="pipeline-stages">
+                <div class="stage-item">
+                    <div class="stage-icon crawling">
+                        <i class="fas fa-spider"></i>
+                    </div>
+                    <div class="stage-info">
+                        <h3>Crawling</h3>
+                        <div class="stage-stats">
+                            <span class="stat">Products Found: <strong id="productsFound">1,247</strong></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stage-item">
+                    <div class="stage-icon ocr">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stage-info">
+                        <h3>OCR Processing</h3>
+                        <div class="stage-stats">
+                            <span class="stat">Images Processed: <strong id="imagesProcessed">892</strong></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stage-item">
+                    <div class="stage-icon rules">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="stage-info">
+                        <h3>Rule Engine</h3>
+                        <div class="stage-stats">
+                            <span class="stat">Confidence Avg: <strong id="confidenceAvg">87.3%</strong></span>
+                            <span class="stat">Failures: <strong id="failures">23</strong></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stage-item">
+                    <div class="stage-icon report">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="stage-info">
+                        <h3>Report Generation</h3>
+                        <div class="stage-stats">
+                            <span class="stat">Reports Generated: <strong id="reportsGenerated">156</strong></span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Chatbot icon at bottom -->
+<div class="chatbot-container">
+    <button class="chatbot-btn" id="chatbotBtn">
+        <i class="fas fa-comments"></i>
+    </button>
+    <div class="chatbot-tooltip">Need help? Chat with us!</div>
+</div>
+
+    <script src="scanner.js"></script>
+</body>
+</html>
